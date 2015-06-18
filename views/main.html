@@ -3,6 +3,15 @@
 </div>
 
 <h4>Latest Chats:</h4>
-<div class="jumbotron">
-
+<div class="jumbotron" ng-controller="MessageCtrl">
+	<div ng-repeat="item in messages track by $index">
+		<div><img ng-src="{{item.avatar}}"><h4>{{item.text}}</h4><p>{{item.date | date: 'medium'}}</p></div>
+	</div>
+	<form ng-submit="submitText(chatText, userAvatar)" name="chatForm">
+		<select ng-options="item for item in avatars" ng-model="userAvatar"></select>
+		<input type='text' ng-model="chatText" placeholder="durrr" required/>
+	</form>
+	<form ng-submit="addAvatar(newAvatar)">
+		<input ng-model="newAvatar">
+	</form>
 </div>
